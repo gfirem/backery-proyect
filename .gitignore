@@ -5,8 +5,8 @@
 # ignore everything in the "wp-content" directory, except:
 # "mu-plugins", "plugins", "themes" directory
 !mu-plugins/
-!plugins/
-!themes/
+!plugins/bakery
+!themes/bakery-child
 
 # ignore these plugins
 plugins/hello.php
