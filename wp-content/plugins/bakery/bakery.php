@@ -32,7 +32,7 @@ if (!class_exists('PXE_Bakery')) :
         public function __construct()
         {
             //Vicente
-            
+            //Test
         }
     }
 
