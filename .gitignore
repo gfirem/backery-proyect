@@ -1647,7 +1647,7 @@ wp-includes/widgets/class-wp-widget-rss.php
 wp-includes/widgets/class-wp-widget-search.php
 wp-includes/widgets/class-wp-widget-tag-cloud.php
 wp-includes/widgets/class-wp-widget-text.php
-index.php
+/index.php
 license.txt
 readme.html
 wp-activate.php
