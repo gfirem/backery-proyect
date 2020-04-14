@@ -5,13 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class BakeryContacts extends BakeryBase{
-    pubic function __construct(){
+    function __construct(){
         parent::__construct();
         add_action('acf/save_post',array($this,'override_post_title'),20);
     }
 
-    pubic function register_post_type(){
-        register_post_type(post_type:'contact'),
+    function register_post_type(){
+        register_post_type('contact',
             array(
                 'labels'=>array('name'=>__('contacts','bakery'),
                 'singular_name'=>__('contact','bakery'),
@@ -35,10 +35,10 @@ class BakeryContacts extends BakeryBase{
     public function override_post_title($post_id){
         $post_type = get_post_type($post_id);
         if('contact'==$post_type){
-            $first_name = get_field(selector:'name',$post_id);
-            $last_name = get_field(selector:'last_name',$post_id);
+            $first_name = get_field('name',$post_id);
+            $last_name = get_field('last_name',$post_id);
 
-            $title = $first_name.' '.$last_name
+            $title = $first_name.' '.$last_name;
 
             $data = array(
                 'ID'=>$post_id,
