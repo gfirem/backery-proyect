@@ -31,10 +31,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Bakery {
 
+	public static $version='1.0.0';
+	public static $slug='bakery';
+
 	protected static $instance = null;
 
 	public function __construct() {
-
+		add_action('plugins_loaded', array(this,'load_plugin_textdomain'));
+		require_once 'includes/class-base.php';
+		require_once 'includes/class-contacts.php';
+		new BakeryContacts();
 	}
 
 	public static function get_instance() {
