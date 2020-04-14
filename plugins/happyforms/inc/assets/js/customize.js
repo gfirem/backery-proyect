@@ -1443,9 +1443,12 @@
 
 			var editorSettings = {
 				tinymce: {
-					toolbar1: 'bold,italic,bullist,numlist,link,hr',
+					toolbar1: 'bold,italic,strikethrough,link',
 					setup: this.onEditorInit.bind( this ),
 				},
+				quicktags: {
+					buttons: 'strong,em,del,link,close'
+				}
 			};
 
 			_.each( this.editorIds, function( editorId ) {
@@ -1840,49 +1843,25 @@
 
 		initUISliders: function() {
 			var self = this;
-			var $container = this.$el.find( '.happyforms-range-control:not(#customize-control-form_width)' );
+			var $container = this.$el.find( '.happyforms-range-control' );
 
-			$container.each(function (el, index) {
+			$container.each( function( index, el ) {
 				var $this = $(this);
 				var variable = $this.data('variable');
-				var $slider = $( '.happyforms-range-slider', $this );
-				var $sliderInput = $( 'input', $this );
-				var min = parseFloat( $sliderInput.attr( 'min' ) );
-				var max = parseFloat( $sliderInput.attr( 'max' ) );
-				var step = parseFloat( $sliderInput.attr( 'step' ) );
-				var value = parseFloat( $sliderInput.val() );
+				var $sliderInput = $( 'input[type=range]', $this );
 
-				$sliderInput.on('keyup mouseup', function() {
+				$sliderInput.on( 'change', function() {
 					var $this = $(this);
 
-					self.model.set( $sliderInput.attr('data-attribute'), $this.val() );
+					self.model.set( $sliderInput.attr( 'data-attribute' ), $this.val() );
 
 					var data = {
 						variable: variable,
-						value: $this.val() + '' + $this.parent().attr('data-unit'),
+						value: $this.val() + $( el ).attr( 'data-unit' ),
 					};
 
-					happyForms.previewSend('happyforms-css-variable-update', data);
+					happyForms.previewSend( 'happyforms-css-variable-update', data );
 				});
-
-				$slider.slider( {
-					value: value,
-					min: min,
-					max: max,
-					step: step,
-
-					stop: function( e, ui ) {
-						$sliderInput.val(ui.value);
-						self.model.set( $sliderInput.attr( 'data-attribute' ), ui.value );
-
-						var data = {
-							variable: variable,
-							value: ui.value + '' + $sliderInput.parent().attr('data-unit'),
-						};
-
-						happyForms.previewSend('happyforms-css-variable-update', data);
-					}
-				} );
 			} );
 		},
 
@@ -1890,7 +1869,6 @@
 			var self = this;
 
 			var $container = this.$el.find( '.happyforms-range-control#customize-control-form_width' );
-			var $slider = $( '.happyforms-range-slider', $container );
 			var $input = $( 'input', $container );
 			var $unitSwitch = $( '.happyforms-unit-switch', $container );
 
@@ -1925,7 +1903,7 @@
 			if ( reInit ) {
 				numericValue = ('%' === unit) ? 100 : 900;
 
-				self.updateFormWidth(numericValue, unit, $slider);
+				self.updateFormWidth(numericValue, unit);
 			}
 
 			$input.val(numericValue);
@@ -1933,26 +1911,11 @@
 			$input.on('keyup change mouseup', function () {
 				var $this = $(this);
 
-				self.updateFormWidth($this.val(), unit, $slider);
-			});
-
-			$slider.slider({
-				value: numericValue,
-				min: min,
-				max: max,
-				step: step,
-
-				stop: function (e, ui) {
-					$input.val(ui.value);
-
-					self.updateFormWidth(ui.value, unit, $slider);
-				}
+				self.updateFormWidth($this.val(), unit);
 			});
 		},
 
-		updateFormWidth: function( value, unit, $slider ) {
-			$slider.slider('value', value);
-
+		updateFormWidth: function( value, unit ) {
 			this.model.set('form_width', value + unit);
 
 			var data = {

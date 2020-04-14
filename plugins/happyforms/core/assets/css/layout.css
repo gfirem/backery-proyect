@@ -1303,12 +1303,20 @@ input[type=submit][disabled].happyforms-button--submit {
   flex-flow: row wrap;
 }
 
-.happyforms-form .happyforms-part .happyforms-input-group.with-prefix > input {
+.happyforms-form .happyforms-part .happyforms-input {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.happyforms-form .happyforms-part .happyforms-input-group.with-prefix .happyforms-input > input {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
 
-.happyforms-form .happyforms-part .happyforms-input-group.with-suffix > input {
+.happyforms-form .happyforms-part .happyforms-input-group.with-suffix .happyforms-input > input {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
@@ -1350,6 +1358,5 @@ input[type=submit][disabled].happyforms-button--submit {
   text-transform: none;
 }
 .happyforms-input-group input {
-  width: auto !important;
-  flex-grow: 1;
+  width: 100%;
 }

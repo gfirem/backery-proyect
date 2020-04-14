@@ -10,8 +10,10 @@ class HappyForms extends HappyForms_Core {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'happyforms_do_setup_control', array( $this, 'do_control' ), 10, 3 );
 		add_action( 'happyforms_do_email_control', array( $this, 'do_control' ), 10, 3 );
+		add_action( 'happyforms_do_style_control', array( $this, 'do_control' ), 10, 3 );
 		add_filter( 'happyforms_setup_controls', array( $this, 'add_dummy_setup_controls' ) );
 		add_filter( 'happyforms_email_controls', array( $this, 'add_dummy_email_controls' ) );
+		add_filter( 'happyforms_style_controls', array( $this, 'add_dummy_style_controls' ) );
 		add_action( 'admin_print_footer_scripts', array( $this, 'print_upgrade_modals' ) );
 		add_action( 'parse_request', array( $this, 'parse_archive_request' ) );
 		add_action( 'admin_notices', array( $this, 'display_notices' ) );
@@ -76,13 +78,6 @@ class HappyForms extends HappyForms_Core {
 	}
 
 	public function add_dummy_setup_controls( $controls ) {
-		$controls[1320] = array(
-			'type' => 'checkbox_dummy',
-			'dummy_id' => 'use_theme_styles',
-			'label' => __( 'Use theme styles', HAPPYFORMS_TEXT_DOMAIN ),
-			'tooltip' => __( 'Inherit theme default styles instead of using HappyForms styles.', HAPPYFORMS_TEXT_DOMAIN ),
-		);
-
 		$controls[1450] = array(
 			'type' => 'checkbox_dummy',
 			'dummy_id' => 'shuffle_parts',
@@ -205,10 +200,17 @@ class HappyForms extends HappyForms_Core {
 			'tooltip' => __( 'Include the page link your form was submitted from.', HAPPYFORMS_TEXT_DOMAIN ),
 		);
 
+		$controls[454] = array(
+			'type' => 'checkbox_dummy',
+			'dummy_id' => 'attach_pdf_submission',
+			'label' => __( 'Attach .pdf to submission alert', 'happyforms' ),
+			'tooltip' => __( 'Attach a PDF to your submission alert.', 'happyforms-upgrade' ),
+		);
+
 		$controls[819] = array(
 			'type' => 'checkbox_dummy',
 			'dummy_id' => 'attach_pdf',
-			'label' => __( 'Attach PDF to confirmation email', 'happyforms' ),
+			'label' => __( 'Attach .pdf to confirmation email', 'happyforms' ),
 			'tooltip' => __( 'Attach a PDF to the recipient\'s confirmation email.', 'happyforms' ),
 		);
 
@@ -217,6 +219,16 @@ class HappyForms extends HappyForms_Core {
 			'dummy_id' => 'abandoned_resume_send_alert_email',
 			'label' => __( 'Send abandonment email', 'happyforms' ),
 			'tooltip' => __( 'Notify users when they abandon your form before submitting it.', 'happyforms' ),
+		);
+
+		return $controls;
+	}
+
+	public function add_dummy_style_controls( $controls ) {
+		$controls[110] = array(
+			'type' => 'checkbox_dummy',
+			'dummy_id' => 'use_theme_styles',
+			'label' => __( 'Use theme styles', HAPPYFORMS_TEXT_DOMAIN ),
 		);
 
 		return $controls;

@@ -469,7 +469,7 @@ a.happyforms-form-part-remove:hover {
 }
 
 #customize-control-confirmation_email_content .wp-editor-tabs {
-  visibility: hidden;
+  display: none;
 }
 
 .customize-control-group.happyforms-nested-settings {
@@ -1273,7 +1273,6 @@ ul.happyforms-style-controls .customize-control.happyforms-divider-control h3 {
 
 /* Tinymce control styles */
 .customize-control .mce-tinymce {
-  border: 1px solid #ddd;
   box-sizing: border-box;
   box-shadow: none;
 }
@@ -1429,7 +1428,7 @@ div.customize-section-description {
   display: block;
 }
 
-.happyforms-nested-settings[data-trigger="confirm_submission"] {
+#customize-control-confirm_submission[data-value="success_message"] ~ .happyforms-nested-settings[data-trigger="confirm_submission"] {
   display: block;
 }
 

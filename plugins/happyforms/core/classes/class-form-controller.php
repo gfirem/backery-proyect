@@ -101,6 +101,8 @@ class HappyForms_Form_Controller {
 			'supports' => array( 'author', 'custom-fields' ),
 		);
 
+		$args = apply_filters( 'happyforms_happyform_post_type_args', $args );
+
 		register_post_type( $this->post_type, $args );
 
 		$tracking_status = happyforms_get_tracking()->get_status();

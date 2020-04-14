@@ -5,7 +5,7 @@
  * Plugin URI:  https://happyforms.me
  * Description: Your friendly drag and drop contact form builder for creating contact forms, lead generation forms, feedback forms, quote forms, survey forms and more!
  * Author:      The Theme Foundry
- * Version:     1.9.7
+ * Version:     1.9.8
  * Author URI:  https://thethemefoundry.com
  * Upgrade URI: https://thethemefoundry.com
  */
@@ -13,7 +13,7 @@
 /**
  * The current version of the plugin.
  */
-define( 'HAPPYFORMS_VERSION', '1.9.7' );
+define( 'HAPPYFORMS_VERSION', '1.9.8' );
 define( 'HAPPYFORMS_TEXT_DOMAIN', 'happyforms' );
 
 if ( ! function_exists( 'happyforms_plugin_file' ) ):

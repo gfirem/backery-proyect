@@ -170,16 +170,20 @@ class HappyForms_Part_Email extends HappyForms_Form_Part {
 	public function validate_value( $value, $part = array(), $form = array() ) {
 		$part_name = happyforms_get_part_name( $part, $form );
 
-		if ( $part['required'] && empty( $value[0] ) ) {
-			$error = new WP_Error( 'error', happyforms_get_validation_message( 'field_empty' ) );
+		if ( empty( $value[0] ) ) {
+			if ( 1 == $part['required'] ) {
+				$error = new WP_Error( 'error', happyforms_get_validation_message( 'field_empty' ) );
 
-			if ( empty( $value[1] ) ) {
-				$error->add_data( array(
-					'components' => array( 0, 1 )
-				) );
+				if ( empty( $value[1] ) ) {
+					$error->add_data( array(
+						'components' => array( 0, 1 )
+					) );
+				}
+
+				return $error;
+			} else {
+				return $value;
 			}
-
-			return $error;
 		}
 
 		$validation_value = $value[0];

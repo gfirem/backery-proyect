@@ -5,7 +5,7 @@ Tags: contact, contact form, email, feedback form, form, form builder, custom fo
 Requires at least: 4.8
 Tested up to: 5.4
 Requires PHP: 5.3
-Stable tag: 1.9.7
+Stable tag: 1.9.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,11 +97,17 @@ Yep! HappyForms free isn't going anywhere but for those looking for even more yo
 
 == Changelog ==
 
+= 1.9.8 =
+* Improvement: Improved appearance and available tools in visual editors.
+* Bugfix: Fixed Email part which was not allowing empty value even when marked as optional part.
+* Bugfix: Fixed font size sliders in Style tab that were not updating preview.
+* Bugfix: Fixed broken appearance of inputs when "Label display" setting was set to "Inside".
+
 = 1.9.7 =
-Improvement: New “Confirm submission” control in Setup step.
-Improvement: Various improvements to HappyForms UI.
-Improvement: Compatibility with WordPress 5.4.
-Bugfix: Form width slider in Style tab → General was not updating value in preview.
+* Improvement: New “Confirm submission” control in Setup step.
+* Improvement: Various improvements to HappyForms UI.
+* Improvement: Compatibility with WordPress 5.4.
+* Bugfix: Form width slider in Style tab → General was not updating value in preview.
 
 = 1.9.6 =
 * Improvement: When searching for specific choice in Dropdown part, a configurable "No results" message is shown if no choice is found.
@@ -592,6 +598,9 @@ Bugfix: Form width slider in Style tab → General was not updating value in pre
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.9.8 =
+* Form builder improvements. Bug fixes.
 
 = 1.9.7 =
 * Compatibility with WordPress 5.4, improvements and bug fixes.

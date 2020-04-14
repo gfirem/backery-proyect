@@ -120,6 +120,10 @@ class HappyForms_Form_Setup {
 				'default' => __( 'Review submission', HAPPYFORMS_TEXT_DOMAIN ),
 				'sanitize' => 'sanitize_text_field',
 			),
+			'edit_button_label' => array(
+				'default' => __( 'Edit', HAPPYFORMS_TEXT_DOMAIN ),
+				'sanitize' => 'sanitize_text_field',
+			),
 			'unique_id' => array(
 				'default' => 0,
 				'sanitize' => 'happyforms_sanitize_checkbox',

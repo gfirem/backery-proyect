@@ -892,9 +892,13 @@ if ( ! function_exists( 'happyforms_get_form_property' ) ):
  * @return string
  */
 function happyforms_get_form_property( $form, $key ) {
-	$value = isset( $form[$key] ) ? $form[$key] : '';
-	$value = is_numeric( $value ) ? intval( $value ) : $value;
-
+	if ( is_array( $form ) ) {
+		$value = isset( $form[$key] ) ? $form[$key] : '';
+		$value = is_numeric( $value ) ? intval( $value ) : $value;	
+	} else {
+		$value = happyforms_get_meta( $form, $key, true );
+	}
+	
 	return $value;
 }
 
@@ -1509,12 +1513,13 @@ if ( ! function_exists( 'happyforms_get_previous_part' ) ):
 
 function happyforms_get_previous_part( $part, $form ) {
 	$part_id = $part['id'];
-	$part_ids = wp_list_pluck( $form['parts'], 'id' );
+	$parts = array_values( $form['parts'] );
+	$part_ids = wp_list_pluck( $parts, 'id' );
 	$part_index = array_search( $part_id, $part_ids );
 	$part_index = $part_index - 1;
 
-	if ( isset( $form['parts'][$part_index] ) ) {
-		return $form['parts'][$part_index];
+	if ( isset( $parts[$part_index] ) ) {
+		return $parts[$part_index];
 	}
 
 	return false;
@@ -1526,12 +1531,13 @@ if ( ! function_exists( 'happyforms_get_next_part' ) ):
 
 function happyforms_get_next_part( $part, $form ) {
 	$part_id = $part['id'];
-	$part_ids = wp_list_pluck( $form['parts'], 'id' );
+	$parts = array_values( $form['parts'] );
+	$part_ids = wp_list_pluck( $parts, 'id' );
 	$part_index = array_search( $part_id, $part_ids );
 	$part_index = $part_index + 1;
 
-	if ( isset( $form['parts'][$part_index] ) ) {
-		return $form['parts'][$part_index];
+	if ( isset( $parts[$part_index] ) ) {
+		return $parts[$part_index];
 	}
 
 	return false;

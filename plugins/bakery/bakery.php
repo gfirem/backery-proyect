@@ -37,10 +37,36 @@ class Bakery {
 	protected static $instance = null;
 
 	public function __construct() {
-		add_action('plugins_loaded', array(this,'load_plugin_textdomain'));
+		add_action('plugins_loaded', array($this,'load_plugin_textdomain'));
 		require_once 'includes/class-base.php';
 		require_once 'includes/class-contacts.php';
 		new BakeryContacts();
+	}
+
+	public function load_plugin_textdomain(){
+		load_plugin_textdomain('bakery',false,dirname(plugin_basename(__FILE__)).'/languages');
+	}
+
+	public static function error_log($message){
+		if(!empty($message)){
+			error_log(self::getSlug().'--'.$message);
+		}
+	}
+
+	/**
+	 * Get the value of version
+	 */ 
+	public function getVersion()
+	{
+		return $this->version;
+	}
+
+	/**
+	 * Get the value of slug
+	 */ 
+	public function getSlug()
+	{
+		return $this->slug;
 	}
 
 	public static function get_instance() {
@@ -50,6 +76,8 @@ class Bakery {
 
 		return self::$instance;
 	}
+
+
 }
 
 Bakery::get_instance();

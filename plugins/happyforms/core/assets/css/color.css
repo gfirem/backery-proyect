@@ -822,6 +822,13 @@
 .happyforms-styles .happyforms-input-group__suffix {
   font-size: 16px;
   font-size: var(--happyforms-part-value-font-size);
+  background: #e8e8e8;
+}
+
+.happyforms-styles.happyforms-form .happyforms-part .happyforms-input {
+  position: relative;
+  flex: 1;
+  width: 100%;
 }
 
 .happyforms-styles.happyforms-styles.happyforms-form--part-border-radius-square button.happyforms-pair-group__button {
@@ -837,13 +844,13 @@
   background-color: var(--happyforms-color-submit-background-hover);
 }
 
-.happyforms-styles.happyforms-form .happyforms-part .happyforms-input-group.with-prefix > input {
+.happyforms-styles.happyforms-form .happyforms-part .happyforms-input-group.with-prefix .happyforms-input > input {
   padding-left: 10px;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
 
-.happyforms-styles.happyforms-form .happyforms-part .happyforms-input-group.with-suffix > input {
+.happyforms-styles.happyforms-form .happyforms-part .happyforms-input-group.with-suffix .happyforms-input > input {
   padding-right: 10px;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;

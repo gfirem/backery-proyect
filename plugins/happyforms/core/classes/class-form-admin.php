@@ -335,7 +335,10 @@ class HappyForms_Form_Admin {
 		$post_type = happyforms_get_form_controller()->post_type;
 
 		if ( $post->post_type === $post_type ) {
-			$time = get_the_time( __( 'Y/m/d' ), $post );
+			$date     = get_the_time( __( 'Y/m/d' ), $post );
+			$the_time = get_the_time( get_option( 'time_format' ), $post );
+
+			$time = $date . '<br>' . $the_time;
 		}
 
 		return $time;
