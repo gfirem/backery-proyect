@@ -4,19 +4,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class BakeryProducts extends BakeryBase{
+class BakeryOrders extends BakeryBase{
     public function __construct(){
         parent::__construct();
     }
 
     public function register_post_type(){
-        register_post_type('product',
+        register_post_type('order',
             array(
-                'labels'=>array('name'=>__('Products','bakery'),
-                'singular_name'=>__('Product','bakery'),
+                'labels'=>array('name'=>__('Orders','bakery'),
+                'singular_name'=>__('Order','bakery'),
                 ),
                 'public'=>false,
-                'menu_icon'=>'dashicons-store',
+                'menu_icon'=>'dashicons-admin-generic',
                 'has_archive'=>true,
                 'publicly_queryable'=>false,
                 'exclude_from_search'=>true,
@@ -24,7 +24,7 @@ class BakeryProducts extends BakeryBase{
                 'show_in_menu'=>true,
                 'query_var'=>true,
                 'hierarchical'=>false,
-                'rewrite'=>array('slug'=>'product'),
+                'rewrite'=>array('slug'=>'order'),
                 'capability_type'=>'post',
                 'supports'=>array('title','editor','custom-fields'),
             )

@@ -41,7 +41,10 @@ class Bakery {
 		require_once 'includes/class-base.php';
 		require_once 'includes/class-contacts.php';
 		require_once 'includes/class-products.php';
+		require_once 'includes/class-orders.php';
 		new BakeryContacts();
+		new BakeryProducts();
+		new BakeryOrders();
 	}
 
 	public function load_plugin_textdomain(){
