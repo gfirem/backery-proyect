@@ -13,8 +13,8 @@ class BakeryContacts extends BakeryBase{
     function register_post_type(){
         register_post_type('contact',
             array(
-                'labels'=>array('name'=>__('contacts','bakery'),
-                'singular_name'=>__('contact','bakery'),
+                'labels'=>array('name'=>__('Contacts','bakery'),
+                'singular_name'=>__('Contact','bakery'),
                 ),
                 'public'=>false,
                 'menu_icon'=>'dashicons-email-alt',

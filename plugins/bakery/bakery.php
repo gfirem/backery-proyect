@@ -40,6 +40,7 @@ class Bakery {
 		add_action('plugins_loaded', array($this,'load_plugin_textdomain'));
 		require_once 'includes/class-base.php';
 		require_once 'includes/class-contacts.php';
+		require_once 'includes/class-products.php';
 		new BakeryContacts();
 	}
 
