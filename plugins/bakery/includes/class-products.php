@@ -30,8 +30,16 @@ class BakeryProducts extends BakeryBase {
 				'rewrite'             => array( 'slug' => 'product' ),
 				'capability_type'     => 'post',
 				'supports'            => array( 'title', 'editor', 'custom-fields', 'thumbnail' ),
+				'taxonomies'          => array( 'prod_category' )
 			)
 		);
+
+		register_taxonomy( 'prod_category', 'product', array(
+			'public' => true,
+			'hierarchical' => true,
+			'show_tagcloud' => false,
+			'rewrite' => array( 'slug' => 'product-category' )
+		) );
 	}
 
 	public function product_price_meta_boxes() {
@@ -60,7 +68,7 @@ class BakeryProducts extends BakeryBase {
 		}
 
 		if ( isset( $_POST['price'] ) ) {
-			$price = filter_var( $_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, array('flags' => FILTER_FLAG_ALLOW_FRACTION) );
+			$price = filter_var( $_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, array( 'flags' => FILTER_FLAG_ALLOW_FRACTION ) );
 			update_post_meta( $post_id, 'price', esc_attr( $price ) );
 		}
 	}
