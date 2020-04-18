@@ -34,8 +34,10 @@ class Bakery {
 	public static $version = '1.0.0';
 	public static $slug = 'bakery';
 	protected static $instance = null;
+	protected static $view = null;
 
 	public function __construct() {
+		self::$view = dirname( __FILE__ ) . '/views/';
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		require_once 'includes/class-acf.php';
 		new BakeryACF();
@@ -46,6 +48,15 @@ class Bakery {
 		new BakeryContacts();
 		new BakeryProducts();
 		new BakeryOrders();
+	}
+
+	/**
+	 * Get View path
+	 *
+	 * @return string
+	 */
+	public static function getView() {
+		return self::$view;
 	}
 
 	/**
