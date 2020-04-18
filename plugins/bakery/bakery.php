@@ -37,6 +37,8 @@ class Bakery {
 
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+		require_once 'includes/class-acf.php';
+		new BakeryACF();
 		require_once 'includes/class-base.php';
 		require_once 'includes/class-contacts.php';
 		require_once 'includes/class-products.php';
