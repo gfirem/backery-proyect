@@ -60,7 +60,7 @@ class BakeryProducts extends BakeryBase {
 		}
 
 		if ( isset( $_POST['price'] ) ) {
-			$price = filter_var( $_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT );
+			$price = filter_var( $_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, array('flags' => FILTER_FLAG_ALLOW_FRACTION) );
 			update_post_meta( $post_id, 'price', esc_attr( $price ) );
 		}
 	}
