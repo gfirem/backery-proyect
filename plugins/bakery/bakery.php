@@ -1,11 +1,11 @@
 <?php
 /*
  * Plugin Name: Bakery
- * Description: Personalizacion para la panedira
+ * Description: Personalizacion para la panaderia
  * Version: 1.0.0
  * Author: Workshop
  * License: GPLv2 or later
- * Text Domain: buddyforms
+ * Text Domain: bakery
  *****************************************************************************
  *
  * This script is free software; you can redistribute it and/or modify
