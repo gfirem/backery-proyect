@@ -35,11 +35,11 @@ class BakeryOrders extends BakeryBase {
 
 	public function override_post_title( $post_id ) {
 		$post_type = get_post_type( $post_id );
-		if ( 'contact' == $post_type ) {
-			$first_name = get_field( 'name', $post_id );
-			$last_name  = get_field( 'last_name', $post_id );
+		if ( 'order' == $post_type ) {
+			/** @var WP_Post $contact */
+			$contact = get_field( 'contact', $post_id );
 
-			$title = $first_name . ' ' . $last_name;
+			$title =  sprintf(__(' Order #%s - %s', 'bakery'), $post_id, $contact->post_title);
 
 			$data = array(
 				'ID'         => $post_id,

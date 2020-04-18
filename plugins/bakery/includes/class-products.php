@@ -39,8 +39,8 @@ class BakeryProducts extends BakeryBase {
 	}
 
 	public function product_price_mb_callback( $post ) {
-		$price = get_post_meta( $post->ID, 'bakery_product_price', true );
-		$price  = isset( $price ) ? esc_attr( $price ) : 0;
+		$price = get_post_meta( $post->ID, 'price', true );
+		$price = isset( $price ) ? esc_attr( $price ) : 0;
 		include_once Bakery::getView() . 'product-price.php';
 	}
 
@@ -50,7 +50,7 @@ class BakeryProducts extends BakeryBase {
 			return;
 		}
 
-		if ( !empty($_POST['_nonce']) && ! wp_verify_nonce( $_POST['_nonce'], 'nonce_value' ) ) {
+		if ( ! empty( $_POST['_nonce'] ) && ! wp_verify_nonce( $_POST['_nonce'], 'nonce_value' ) ) {
 			return;
 		}
 
@@ -59,9 +59,9 @@ class BakeryProducts extends BakeryBase {
 			return;
 		}
 
-		if ( isset( $_POST['bakery_product_price'] ) ) {
-			$price = filter_var( $_POST['bakery_product_price'], FILTER_SANITIZE_NUMBER_FLOAT );
-			update_post_meta( $post_id, 'bakery_product_price', esc_attr( $price ) );
+		if ( isset( $_POST['price'] ) ) {
+			$price = filter_var( $_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT );
+			update_post_meta( $post_id, 'price', esc_attr( $price ) );
 		}
 	}
 }
