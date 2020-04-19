@@ -49,9 +49,9 @@ class BakeryProducts extends BakeryBase
         parent::post_mb($post_type, $fields, $title);
     }
 
-    public function save_post($post_id, $post_data=array())
+    public function save_post($post_id, $post)
     {
         //$a= $_POST;
-        parent::save_post($post_id, $post_data);
+        parent::save_post($post_id, $post);
     }
 }
