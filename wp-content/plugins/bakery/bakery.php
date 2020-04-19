@@ -17,12 +17,31 @@ if (!defined('WPINC')) {
 
 class Bakery
 {
-    public static $version = '1.0.0';
-    public static $slug = 'bakery';
     protected static $instance = null;
+
+    /**
+	 * The unique identifier of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $slug    The string used to uniquely identify this plugin.
+	 */
+	protected $slug;
+
+    /**
+	 * The current version of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $version    The current version of the plugin.
+	 */
+	protected $version;
 
     public function __construct()
     {
+        $this->slug = 'bakery';
+        $this->version = '1.0.0';
+
         add_action('plugins_loaded', array($this, 'load_textdomain'));
         require_once 'includes/class-base.php';
         require_once 'includes/class-products.php';
@@ -49,5 +68,16 @@ class Bakery
         }
         return self::$instance;
     }
+
+    /**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
 }
 Bakery::get_instance();

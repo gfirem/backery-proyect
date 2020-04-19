@@ -9,6 +9,7 @@ class BakeryProducts extends BakeryBase
     public function __construct()
     {
         parent::__construct();
+        add_action('save_post', array($this, 'save_post'), 10, 2);
     }
 
     public function register_post_type($post_type, $labels = array(), $menu_icon = '', $supports = array(), $taxonomies = array())
@@ -32,6 +33,8 @@ class BakeryProducts extends BakeryBase
         $menu_icon = 'dashicons-products';
         $supports = array('title', 'thumbnail');
 
+        $taxonomies = array('product-cat');
+
         parent::register_post_type($post_type, $labels, $menu_icon, $supports, $taxonomies);
     }
 
@@ -46,8 +49,9 @@ class BakeryProducts extends BakeryBase
         parent::post_mb($post_type, $fields, $title);
     }
 
-    public function save_post($post_id, $post_data)
+    public function save_post($post_id, $post_data=array())
     {
+        //$a= $_POST;
         parent::save_post($post_id, $post_data);
     }
 }
