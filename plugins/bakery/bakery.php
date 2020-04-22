@@ -1,11 +1,11 @@
 <?php
 /*
  * Plugin Name: Bakery
- * Description: Personalizacion para la panedira
+ * Description: Customize your Bakery
  * Version: 1.0.0
  * Author: Workshop
  * License: GPLv2 or later
- * Text Domain: buddyforms
+ * Text Domain: bakery
  *****************************************************************************
  *
  * This script is free software; you can redistribute it and/or modify
@@ -35,9 +35,13 @@ class Bakery {
 	public static $slug='bakery';
 
 	protected static $instance = null;
+	protected static $view = null;
 
 	public function __construct() {
+		self::$view = dirname( __FILE__ ) . '/views/';
 		add_action('plugins_loaded', array($this,'load_plugin_textdomain'));
+		require_once 'includes/class-acf.php';
+		new BakeryACF();
 		require_once 'includes/class-base.php';
 		require_once 'includes/class-contacts.php';
 		require_once 'includes/class-products.php';
@@ -47,8 +51,23 @@ class Bakery {
 		new BakeryOrders();
 	}
 
+	/**
+	 * Get View path
+	 *
+	 * @return string
+	 */
+	public static function getView() {
+		return self::$view;
+	}
+
+	/**
+	 * Load the textdomain for the plugin
+	 *
+	 * @package Bakery
+	 * @since 1.0
+	 */
 	public function load_plugin_textdomain(){
-		load_plugin_textdomain('bakery',false,dirname(plugin_basename(__FILE__)).'/languages');
+		load_plugin_textdomain('bakery',false,dirname(plugin_basename(__FILE__)).'/languages/');
 	}
 
 	public static function error_log($message){
@@ -58,19 +77,22 @@ class Bakery {
 	}
 
 	/**
-	 * Get the value of version
-	 */ 
-	public function getVersion()
-	{
-		return $this->version;
+	 * Get plugin version
+	 *
+	 * @return string
+	 */
+	static function getVersion() {
+		return self::$version;
 	}
 
 	/**
-	 * Get the value of slug
-	 */ 
-	public function getSlug()
-	{
-		return $this->slug;
+	 * Get plugins slug
+	 *
+	 * @return string
+	 */
+	static function getSlug() {
+		return self::$slug;
+		
 	}
 
 	public static function get_instance() {

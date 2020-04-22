@@ -5,12 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class BakeryContacts extends BakeryBase{
-    function __construct(){
+    public function __construct(){
         parent::__construct();
         add_action('acf/save_post',array($this,'override_post_title'),20);
     }
 
-    function register_post_type(){
+    public function register_post_type(){
         register_post_type('contact',
             array(
                 'labels'=>array('name'=>__('Contacts','bakery'),
