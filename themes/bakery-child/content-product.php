@@ -12,8 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $price               = get_post_meta( get_the_ID(), 'price', true );
 $bakery_price_prefix = get_option( 'bakery_price_prefix' );
 $bakery_price_prefix = ! empty( $bakery_price_prefix ) ? esc_attr( $bakery_price_prefix ) : '$';
-
-$price_string = $bakery_price_prefix . ' ' . $price;
+$price_string        = $bakery_price_prefix . ' ' . $price;
 ?>
 <div id="product-<?php the_ID(); ?>" <?php post_class( 'card' ); ?> <?php generate_do_microdata( 'product' ); ?>>
     <img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" style="width:100%">
