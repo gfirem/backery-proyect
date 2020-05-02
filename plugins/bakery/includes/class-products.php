@@ -49,6 +49,7 @@ class BakeryProducts extends BakeryBase {
 	public function product_price_mb_callback( $post ) {
 		$price = get_post_meta( $post->ID, 'price', true );
 		$price = isset( $price ) ? esc_attr( $price ) : 0;
+		$bakery_price_prefix = get_option( 'bakery_price_prefix' );
 		include_once Bakery::getView() . 'product-price.php';
 	}
 

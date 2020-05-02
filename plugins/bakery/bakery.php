@@ -39,16 +39,28 @@ class Bakery {
 	public function __construct() {
 		self::$view = dirname( __FILE__ ) . '/views/';
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'admin_js_css_enqueue' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_js_css_enqueue' ) );
+
 		require_once 'includes/class-acf.php';
 		new BakeryACF();
 		require_once 'includes/class-base.php';
 		require_once 'includes/class-contacts.php';
 		require_once 'includes/class-products.php';
 		require_once 'includes/class-orders.php';
+		require_once 'includes/class-price-setting.php';
 		new BakeryContacts();
 		new BakeryProducts();
 		new BakeryOrders();
+		new BakeryPriceSetting();
 	}
+
+	public function admin_js_css_enqueue() {
+		wp_enqueue_script( 'bakery-js', plugins_url( '/', __FILE__ ) . 'assets/js/bakery.js', array( 'jquery' ), self::getVersion() );
+		wp_enqueue_style( 'bakery-css', plugins_url( '/', __FILE__ ). 'assets/css/bakery.css', self::getVersion() );
+	}
+
+
 
 	/**
 	 * Get View path
