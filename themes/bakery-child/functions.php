@@ -23,4 +23,4 @@ function bakery_theme_template( $template ) {
 	return $template;
 }
 
-add_action( 'page_template', 'bakery_theme_template' );
+add_filter( 'page_template', 'bakery_theme_template' );
