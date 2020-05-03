@@ -4,21 +4,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class BakeryContacts extends BakeryBase {
+class BakeryOrders extends BakeryBase {
 	public function __construct() {
 		parent::__construct();
 		add_action( 'acf/save_post', array( $this, 'override_post_title' ), 20 );
 	}
 
 	public function register_post_type() {
-		register_post_type( 'contact',
+		register_post_type( 'order',
 			array(
 				'labels'              => array(
-					'name'          => __( 'Contacts', 'bakery' ),
-					'singular_name' => __( 'Contact', 'bakery' ),
+					'name'          => __( 'Orders', 'bakery' ),
+					'singular_name' => __( 'Order', 'bakery' ),
 				),
 				'public'              => false,
-				'menu_icon'           => 'dashicons-email-alt',
+				'menu_icon'           => 'dashicons-admin-generic',
 				'has_archive'         => true,
 				'publicly_queryable'  => false,
 				'exclude_from_search' => true,
@@ -26,7 +26,7 @@ class BakeryContacts extends BakeryBase {
 				'show_in_menu'        => true,
 				'query_var'           => true,
 				'hierarchical'        => false,
-				'rewrite'             => array( 'slug' => 'contact' ),
+				'rewrite'             => array( 'slug' => 'order' ),
 				'capability_type'     => 'post',
 				'supports'            => array( 'custom-fields' ),
 			)
@@ -35,11 +35,11 @@ class BakeryContacts extends BakeryBase {
 
 	public function override_post_title( $post_id ) {
 		$post_type = get_post_type( $post_id );
-		if ( 'contact' == $post_type ) {
-			$first_name = get_field( 'name', $post_id );
-			$last_name  = get_field( 'last_name', $post_id );
+		if ( 'order' == $post_type ) {
+			/** @var WP_Post $contact */
+			$contact = get_field( 'contact', $post_id );
 
-			$title = $first_name . ' ' . $last_name;
+			$title =  sprintf(__(' Order #%s - %s', 'bakery'), $post_id, $contact->post_title);
 
 			$data = array(
 				'ID'         => $post_id,
