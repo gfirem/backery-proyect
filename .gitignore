@@ -1,15 +1,16 @@
-# Created by .ignore support plugin (hsz.mobi)
-### WordPress template
+
+
 # ignore everything in the root except the "wp-content" directory.
-plugins
-themes
+plugins/*
+!plugins/sacsilogin
+
+themes/*
 
 # ignore everything in the "wp-content" directory, except:
 # "mu-plugins", "plugins", "themes" directory
 !mu-plugins/
 !plugins/bakery
 !themes/bakery-child
-
 # ignore these plugins
 plugins/hello.php
 
