@@ -4,6 +4,37 @@
 * Plugin Name: Sacsi Login by ajax
 */
 
+function sacsilogin_shortcode($atts = [], $content = null)
+{
+
+    // $strAtt = print_r($atts,true);
+    // $strContent = print_r($atts, true);
+    // // do something to $content
+    // $contentFinal = <<<HTML
+    // <h2>Atributos </h2>
+    // {$strAtt}
+    // <h2>Contenido </h2>
+    // {$content}
+    // HTML;
+
+    $lostpassword_url = wp_lostpassword_url();
+    $nonce_field = wp_nonce_field('ajax-login-nonce', 'security', false, false);
+$contentFinal = <<<HTML
+<form id="login" method="post">
+    <h2>Site Login</h2>
+    <p class="status"></p>
+    <input id="username" type="text" name="username" placeholder="User@email.com">
+    <input id="password" type="password" name="password" placeholder="Your password">
+    <input class="submit_button" type="submit" value="Login" name="submit">
+    {$nonce_field}
+</form>
+HTML;
+
+
+    // always return
+    return $contentFinal;
+}
+add_shortcode('sacsilogin', 'sacsilogin_shortcode');
 
 function sacsilogin_load_scripts() {
 
@@ -20,38 +51,6 @@ wp_enqueue_script('sacsilogin_js', plugins_url('js/sacsilogin.js', __FILE__ ), a
 
 add_action('wp_enqueue_scripts', 'sacsilogin_load_scripts');
 
-
-function sacsilogin_shortcode($atts = [], $content = null)
-{
-
-// $strAtt = print_r($atts,true);
-// $strContent = print_r($atts, true);
-// // do something to $content
-// $contentFinal = <<<HTML
-// <h2>Atributos </h2>
-// {$strAtt}
-// <h2>Contenido </h2>
-// {$content}
-// HTML;
-
-$lostpassword_url = wp_lostpassword_url();
-$nonce_field = wp_nonce_field('ajax-login-nonce', 'security',false,false);
-$contentFinal = <<<HTML
-<form id="login" method="post">
-    <h2>Site Login</h2>
-    <p class="status"></p>
-    <input id="username" type="text" name="username" placeholder="User@email.com">
-    <input id="password" type="password" name="password" placeholder="Your password">
-    <input class="submit_button" type="submit" value="Login" name="submit">
-    {$nonce_field}
-</form>
-HTML;
-
- 
-    // always return
-    return $contentFinal;
-}
-add_shortcode('sacsilogin', 'sacsilogin_shortcode');
 
 // Enable the user with no privileges to run ajax_login() in AJAX
 //WPpress wp_ajax_nopriv_<anyaction> -> <anyaction> must be a hidden value as part of the form
